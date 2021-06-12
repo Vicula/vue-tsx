@@ -18,6 +18,7 @@
     "dev": "vite",
     "build": "yarn vuedx-typecheck . && vite build",
     "serve": "vite preview",
+    "test": "jest src",
     "addHooks": "yarn husky add .config/.husky/commit-msg 'node .config/scripts/verifyCommits.js $1' && yarn husky add .config/.husky/pre-commit 'yarn lint-staged'",
     "preinstall": "node .config/scripts/checkYarn.js",
     "postinstall": "rm -rf .config/.husky && husky install .config/.husky && yarn addHooks"
