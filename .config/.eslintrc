@@ -9,6 +9,7 @@
     "plugin:vue/vue3-recommended",
     "eslint:recommended",
     "@vue/typescript/recommended",
+    "plugin:cypress/recommended",
 
     "@vue/prettier",
     "@vue/prettier/@typescript-eslint"
@@ -20,6 +21,6 @@
       "jsx": true
     }
   },
-  "plugins": [],
+  "plugins": ["cypress"],
   "rules": {}
 }

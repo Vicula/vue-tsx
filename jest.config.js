@@ -1,7 +1,10 @@
 module.exports = {
-  moduleFileExtensions: ['js', 'ts', 'json', 'vue'],
+  preset: 'ts-jest/presets/js-with-ts',
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'vue', 'node'],
+  modulePathIgnorePatterns: ['e2e'],
+  transformIgnorePatterns: ['/node_modules/(?!(vue-jest)/)'],
   transform: {
-    '^.+\\.ts$': 'ts-jest',
-    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.(j|t)sx?$': 'ts-jest',
+    '^[^.]+.vue$': 'vue-jest',
   },
 }
