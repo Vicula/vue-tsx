@@ -9,15 +9,17 @@
  * @namespace Products
  */
 import { ref, Ref, computed } from "vue";
-
+import Product from "../types/product";
 import Nav from "./nav.vue";
 import Prod from "./prod--single.vue";
+import Popup from "./prod--popup.vue";
 import manufacturer from "../types/manufacturer";
 
 export default {
   components: {
     Nav,
     Prod,
+    Popup,
   },
   // Here we provide data to children components so we can teleport data
   // we make provide a function so it can compute data
@@ -25,16 +27,16 @@ export default {
     return {
       navObj: computed(() => {
         return {
-          showBranding: this.data.ShowBranding,
           logoImg: `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`,
         };
       }),
-      // cartObj: computed(() => vm.$store.state.cart.cart),
-      // cartItems:computed(() => vm.$store.getters['cartItems']),
-      // recProduct:computed(() => vm.$store.state.cart.recomendedProduct),
-      // goal:computed(() => vm.$store.state.cart.goal),
-      // message:computed(() => vm.$store.getters['getCurrentMessage']),
-      // upsell:computed(() => vm.$store.state.cart.upsell),
+      popupObj: computed(() => {
+        return {
+          toggle: this.popup,
+          activeItem: this.activeItem,
+          priceKey: this.data.priceKey,
+        };
+      }),
     };
   },
   async setup(): Promise<{ data: Ref<manufacturer> }> {
@@ -54,8 +56,14 @@ export default {
       "https://raw.githubusercontent.com/RepZio/TestApplication/master/test.json"
     );
     data.value = (await dataResponse.json()) || {};
-    console.log(data.value);
+
     return { data };
+  },
+  data: () => {
+    return {
+      popup: false,
+      activeItem: {},
+    };
   },
   computed: {
     prodFactory() {
@@ -63,9 +71,20 @@ export default {
         it = this.data.items;
       for (const item in it) {
         const s = it[item];
-        ar.push(<Prod key={s.ProductID} item={s} />);
+        ar.push(
+          <Prod onPopup={this.triggerPopup} key={s.ProductID} item={s} />
+        );
       }
       return ar;
+    },
+  },
+  methods: {
+    triggerPopup(i: Product) {
+      this.activeItem = i;
+      this.popup = true;
+    },
+    closePopup() {
+      this.popup = false;
     },
   },
   render() {
@@ -73,6 +92,7 @@ export default {
       <div class="products">
         <Nav />
         <div class="products__grid">{this.prodFactory}</div>
+        <Popup onClose={this.closePopup} />
       </div>
     );
   },

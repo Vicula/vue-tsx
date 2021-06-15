@@ -26,7 +26,12 @@ export default {
   },
   render() {
     return (
-      <article class="prod">
+      <article
+        class="prod"
+        onClick={() => {
+          this.$emit("popup", this.item);
+        }}
+      >
         <img src={this.item.PhotoName + "?w=200&h=200"} />
         <h3>{this.item.ItemName}</h3>
         <h5>{this.money}</h5>
@@ -63,6 +68,7 @@ $component: ".prod";
   @media screen and (min-width: 768px) {
     margin: 25px;
     cursor: pointer;
+
     &:hover {
       transform: translateY(-10px);
       z-index: 0;

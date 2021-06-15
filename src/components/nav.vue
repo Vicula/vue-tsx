@@ -11,10 +11,15 @@
 
 export default {
   inject: ["navObj"],
+  computed: {
+    img() {
+      return this.navObj.value.logoImg;
+    },
+  },
   render() {
     return (
       <nav class="nav">
-        <img src={this.navObj.value.logoImg} />
+        <img src={this.img} />
       </nav>
     );
   },
