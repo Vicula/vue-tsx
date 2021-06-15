@@ -15,10 +15,4 @@ import App from "./app.vue";
 import router from "./router";
 import store from "./store";
 
-const data = fetch(
-  "https://raw.githubusercontent.com/RepZio/TestApplication/master/test.json"
-);
-
-console.log(data);
-
 createApp(App).use(router).use(store).mount("body");
