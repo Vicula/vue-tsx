@@ -1,13 +1,12 @@
 <script lang="tsx">
 /**
- *
- * Product Single
+ * Product Popup
  * ------------------------------------------------------------------------------
- * Single Product for the app
+ * Product popup for showing all the specifc data
+ * on our looped products
  *
  *
- *
- * @namespace ProductSingle
+ * @namespace ProductPopup
  */
 
 export default {
@@ -15,7 +14,7 @@ export default {
     item: {
       type: Object,
       default: () => {
-        return { ProductID: "", PhotoName: "", ItemName: "" };
+        return { PhotoName: "", ItemName: "", BasePrice: "" };
       },
     },
   },
@@ -38,27 +37,17 @@ export default {
 <style lang="scss">
 /**
  *
- * @element Product Single
+ * @element Product Popup
  *
 */
 
-$component: ".prod";
+$component: ".popup";
 
 // @block
 // -------------
 
 #{$component} {
-  background: #eee;
-  max-width: 275px;
-  padding: 1.25rem;
-  width: 250px;
-  border-radius: 5%;
-  margin: 25px 0;
-
-  img {
-    width: 100%;
-    border-radius: 5%;
-  }
+  display: block;
 }
 
 // @--element

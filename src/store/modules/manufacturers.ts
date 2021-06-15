@@ -1,3 +1,7 @@
+interface ManState {
+  name: string;
+}
+
 export default {
   state: () => ({
     name: "Buster",
@@ -8,13 +12,13 @@ export default {
   },
 
   mutations: {
-    SET_NAME(state, payload) {
+    SET_NAME(state: ManState, payload: string) {
       state.name = payload;
     },
   },
 
   actions: {
-    saveName({ commit }, data) {
+    saveName({ commit }: { commit: () => void }, data: string) {
       commit("SET_NAME", data);
     },
   },

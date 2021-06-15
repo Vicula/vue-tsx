@@ -1,9 +1,4 @@
-<template>
-  <Suspense>
-    <products />
-  </Suspense>
-</template>
-<script>
+<script lang="tsx">
 /**
  * Home
  * ------------------------------------------------------------------------------
@@ -14,13 +9,17 @@
  * @namespace Home
  */
 import products from "./products.vue";
-
+import { Suspense } from "vue";
 export default {
   components: {
     products,
   },
-  mounted() {
-    console.log("hey");
+  render() {
+    return (
+      <Suspense>
+        <products />
+      </Suspense>
+    );
   },
 };
 </script>
