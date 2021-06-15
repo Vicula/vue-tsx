@@ -1,10 +1,10 @@
 import { mount } from "@vue/test-utils";
-import Test from "./test.vue";
+import Loading from "./loading.vue";
 
 describe("HelloWorld", () => {
   it("should display header text", () => {
     const msg = "TEST 3";
-    const wrapper = mount(Test, { props: { msg } });
+    const wrapper = mount(Loading, { props: { msg } });
 
     expect(wrapper.find(".wrapper p").text()).toEqual(msg);
   });

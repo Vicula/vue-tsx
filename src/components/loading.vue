@@ -1,10 +1,19 @@
 <script lang="tsx">
+/**
+ * Loading
+ * ------------------------------------------------------------------------------
+ * Loading state where we fetch data before homepage
+ *
+ *
+ *
+ * @namespace Loading
+ */
 import { App, defineComponent, h } from "vue";
 
 export default {
   install: (app: App): void => {
     app.component(
-      "TESTCOMP",
+      "Loading",
       defineComponent({
         computed: {
           buildButton() {
@@ -27,7 +36,20 @@ export default {
 };
 </script>
 <style lang="scss">
-div {
-  color: red;
-}
+/**
+ *
+ * @element Loading
+ *
+*/
+
+$component: ".loading";
+
+// @block
+// -------------
+
+// @--element
+// -------------
+
+// @--modifier
+// --------------
 </style>

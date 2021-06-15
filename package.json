@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "yarn vuedx-typecheck . && vite build",
+    "build": "vite build",
     "serve": "vite preview",
     "test": "jest src",
     "test:e2e": "start-server-and-test dev http-get://localhost:3000 cypress",
@@ -31,7 +31,10 @@
     "*": "prettier -w -u --config .config/.prettierrc --ignore-path .config/.prettierignore"
   },
   "dependencies": {
-    "vue": "^3.0.5"
+    "axios": "^0.21.1",
+    "vue": "^3.0.5",
+    "vue-router": "4",
+    "vuex": "^4.0.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
@@ -45,8 +48,6 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-rc.6",
-    "@vuedx/typecheck": "^0.6.0",
-    "@vuedx/typescript-plugin-vue": "^0.6.0",
     "chalk": "^4.1.1",
     "cypress": "^7.5.0",
     "eslint": "^7.19.0",
