@@ -31,7 +31,7 @@ export default {
     return {
       navObj: computed(() => {
         return {
-          logoImg: `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`,
+          logoImg: this.logo,
         };
       }),
       popupObj: computed(() => {
@@ -49,7 +49,7 @@ export default {
       }),
       footerObj: computed(() => {
         return {
-          logo: `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`,
+          logo: this.logo,
           email: this.data.SalesRep.EmailAddress,
           phone: this.data.SalesRep.Phone,
           name: `${this.data.SalesRep.FirstName} ${this.data.SalesRep.LastName}`,
@@ -59,7 +59,8 @@ export default {
       prodObj: computed(() => {
         return {
           branding: this.data.ShowBranding,
-          logo: `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`,
+          logo: this.logo,
+          pricing: this.data.IncludePricing,
         };
       }),
     };
@@ -91,6 +92,9 @@ export default {
     };
   },
   computed: {
+    logo(): string {
+      return `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`;
+    },
     prodFactory() {
       const ar = [],
         it = this.data.items;

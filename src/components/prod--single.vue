@@ -21,11 +21,16 @@ export default {
     },
   },
   computed: {
-    money(): string {
-      return `$${parseInt(this.item.BasePrice).toFixed(2)}`;
+    money() {
+      if (this.pricing)
+        return <h5>{"$" + parseInt(this.item.BasePrice).toFixed(2)}</h5>;
+      return "";
     },
     branding(): boolean {
       return this.prodObj.value.branding;
+    },
+    pricing(): boolean {
+      return this.prodObj.value.pricing;
     },
     logo() {
       if (this.branding)
@@ -43,7 +48,7 @@ export default {
       >
         <img class="prod__img" src={this.item.PhotoName + "?w=200&h=200"} />
         <h3>{this.item.ItemName}</h3>
-        <h5>{this.money}</h5>
+        {this.money}
         {this.logo}
       </article>
     );

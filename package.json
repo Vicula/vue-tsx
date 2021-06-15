@@ -1,5 +1,5 @@
 {
-  "name": "vite-shell",
+  "name": "vue-tsx",
   "version": "0.1.0",
   "private": true,
   "main": "vite.config.js",
@@ -7,7 +7,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Vicula/Vite-Shell"
+    "url": "https://github.com/Vicula/vue-tsx"
   },
   "keywords": [
     "theme",
@@ -31,7 +31,6 @@
     "*": "prettier -w -u --config .config/.prettierrc --ignore-path .config/.prettierignore"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "vue": "^3.0.5",
     "vue-router": "4",
     "vuex": "^4.0.1"
