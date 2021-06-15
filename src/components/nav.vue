@@ -49,6 +49,11 @@ $component: ".nav";
   background: white;
   padding: 0.5rem;
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+    padding-left: 40px;
+  }
 }
 
 // @__element

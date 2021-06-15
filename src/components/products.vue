@@ -12,6 +12,8 @@ import { ref, Ref, computed } from "vue";
 import Product from "../types/product";
 import Nav from "./nav.vue";
 import Prod from "./prod--single.vue";
+import Header from "./header.vue";
+import Footer from "./footer.vue";
 import Popup from "./prod--popup.vue";
 import manufacturer from "../types/manufacturer";
 
@@ -20,6 +22,8 @@ export default {
     Nav,
     Prod,
     Popup,
+    Header,
+    Footer,
   },
   // Here we provide data to children components so we can teleport data
   // we make provide a function so it can compute data
@@ -35,6 +39,27 @@ export default {
           toggle: this.popup,
           activeItem: this.activeItem,
           priceKey: this.data.priceKey,
+        };
+      }),
+      headerObj: computed(() => {
+        return {
+          name: this.data.SalesRep.CompanyName,
+          message: this.data.Message,
+        };
+      }),
+      footerObj: computed(() => {
+        return {
+          logo: `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`,
+          email: this.data.SalesRep.EmailAddress,
+          phone: this.data.SalesRep.Phone,
+          name: `${this.data.SalesRep.FirstName} ${this.data.SalesRep.LastName}`,
+          location: `${this.data.SalesRep.City}, ${this.data.SalesRep.State} ${this.data.SalesRep.PostalCode}`,
+        };
+      }),
+      prodObj: computed(() => {
+        return {
+          branding: this.data.ShowBranding,
+          logo: `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`,
         };
       }),
     };
@@ -91,7 +116,9 @@ export default {
     return (
       <div class="products">
         <Nav />
+        <Header />
         <div class="products__grid">{this.prodFactory}</div>
+        <Footer />
         <Popup onClose={this.closePopup} />
       </div>
     );
@@ -115,7 +142,7 @@ $component: ".products";
   margin: auto;
   width: 100%;
   background: #ccc;
-  padding: 6rem 0;
+  padding-top: 6rem;
 }
 
 // @--element

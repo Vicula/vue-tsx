@@ -56,7 +56,7 @@ export default {
             <div class="popup__img">
               <img src={this.img} />
             </div>
-            <aside>
+            <aside class="popup__content">
               <h2>{this.name}</h2>
               <p>{this.id}</p>
               <p>{this.price}</p>
@@ -136,7 +136,33 @@ $component: ".popup";
   position: relative;
   display: block;
   width: 100%;
-  padding: 20px 0;
+  padding: 40px 0 20px;
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    padding: 50px 0;
+  }
+}
+
+#{$component}__img {
+  width: 60%;
+  margin: auto;
+  img {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 50px;
+  }
+}
+
+#{$component}__content {
+  width: 85%;
+  margin: auto;
+
+  @media screen and (min-width: 1024px) {
+    padding-right: 50px;
+  }
 }
 
 // @--modifier

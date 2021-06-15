@@ -11,6 +11,7 @@
  */
 
 export default {
+  inject: ["prodObj"],
   props: {
     item: {
       type: Object,
@@ -23,6 +24,14 @@ export default {
     money(): string {
       return `$${parseInt(this.item.BasePrice).toFixed(2)}`;
     },
+    branding(): boolean {
+      return this.prodObj.value.branding;
+    },
+    logo() {
+      if (this.branding)
+        return <img class="prod__logo" src={this.prodObj.value.logo} />;
+      return "";
+    },
   },
   render() {
     return (
@@ -32,9 +41,10 @@ export default {
           this.$emit("popup", this.item);
         }}
       >
-        <img src={this.item.PhotoName + "?w=200&h=200"} />
+        <img class="prod__img" src={this.item.PhotoName + "?w=200&h=200"} />
         <h3>{this.item.ItemName}</h3>
         <h5>{this.money}</h5>
+        {this.logo}
       </article>
     );
   },
@@ -59,10 +69,21 @@ $component: ".prod";
   width: 250px;
   border-radius: 5%;
   margin: 25px 10px;
+  position: relative;
 
-  img {
+  &__img {
     width: 100%;
     border-radius: 5%;
+  }
+
+  &__logo {
+    position: absolute;
+    width: 50px;
+    padding: 10px;
+    background: white;
+    border-radius: 38%;
+    top: 15px;
+    right: 15px;
   }
 
   @media screen and (min-width: 768px) {
