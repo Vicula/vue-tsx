@@ -1,8 +1,3 @@
-<template>
-  <nav class="nav">
-    <img v-if="logo" :src="logo" />
-  </nav>
-</template>
 <script lang="tsx">
 /**
  * Nav
@@ -13,11 +8,15 @@
  *
  * @namespace Nav
  */
-import { h } from "vue";
 
 export default {
-  props: {
-    logo: String,
+  inject: ["navObj"],
+  render() {
+    return (
+      <nav class="nav">
+        <img src={this.navObj.value.logoImg} />
+      </nav>
+    );
   },
 };
 </script>
@@ -34,6 +33,7 @@ $component: ".nav";
 // -------------
 
 #{$component} {
+  z-index: 10;
   position: fixed;
   margin: auto;
   top: 0;
@@ -43,6 +43,7 @@ $component: ".nav";
   justify-content: center;
   background: white;
   padding: 0.5rem;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
 }
 
 // @__element

@@ -8,31 +8,56 @@
  *
  * @namespace Products
  */
-import { ref } from "vue";
+import { ref, Ref, computed } from "vue";
+
 import Nav from "./nav.vue";
 import Prod from "./prod--single.vue";
+import manufacturer from "../types/manufacturer";
 
 export default {
   components: {
     Nav,
     Prod,
   },
-  async setup() {
-    const data = ref({
-      ManufacturerID: "",
-      items: [{ ProductID: "" }],
+  // Here we provide data to children components so we can teleport data
+  // we make provide a function so it can compute data
+  provide() {
+    return {
+      navObj: computed(() => {
+        return {
+          showBranding: this.data.ShowBranding,
+          logoImg: `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`,
+        };
+      }),
+      // cartObj: computed(() => vm.$store.state.cart.cart),
+      // cartItems:computed(() => vm.$store.getters['cartItems']),
+      // recProduct:computed(() => vm.$store.state.cart.recomendedProduct),
+      // goal:computed(() => vm.$store.state.cart.goal),
+      // message:computed(() => vm.$store.getters['getCurrentMessage']),
+      // upsell:computed(() => vm.$store.state.cart.upsell),
+    };
+  },
+  async setup(): Promise<{ data: Ref<manufacturer> }> {
+    const data: Ref<manufacturer> = ref({
+      EmailAddress: "",
+      CompanyName: "",
+      ManufacturerID: 0,
+      Message: "",
+      IncludePricing: true,
+      ShowBranding: true,
+      priceLevelName: "",
+      priceKey: "",
+      SalesRep: {},
+      items: [],
     });
     const dataResponse = await fetch(
       "https://raw.githubusercontent.com/RepZio/TestApplication/master/test.json"
     );
     data.value = (await dataResponse.json()) || {};
-
+    console.log(data.value);
     return { data };
   },
   computed: {
-    logoImg(): string {
-      return `http://images.repzio.com/productimages/${this.data.ManufacturerID}/logo${this.data.ManufacturerID}_lg.jpg?w=100`;
-    },
     prodFactory() {
       const ar = [],
         it = this.data.items;
@@ -46,7 +71,7 @@ export default {
   render() {
     return (
       <div class="products">
-        <Nav logo={this.logoImg} />
+        <Nav />
         <div class="products__grid">{this.prodFactory}</div>
       </div>
     );
@@ -69,7 +94,7 @@ $component: ".products";
   max-width: 1440px;
   margin: auto;
   width: 100%;
-  background: #888;
+  background: #ccc;
   padding: 6rem 0;
 }
 

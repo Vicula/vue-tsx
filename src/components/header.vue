@@ -1,24 +1,20 @@
 <script lang="tsx">
 /**
- * Home
+ * Header
  * ------------------------------------------------------------------------------
- * Home where we suspense
+ * Header for the site
  *
  *
  *
- * @namespace Home
+ * @namespace Header
  */
-import products from "./products.vue";
-import { Suspense } from "vue";
 export default {
-  components: {
-    products,
-  },
   render() {
     return (
-      <Suspense>
-        <products />
-      </Suspense>
+      <header class="header">
+        <h1 class="header__title">RepZio</h1>
+        <div class="header__message"></div>
+      </header>
     );
   },
 };
@@ -26,22 +22,22 @@ export default {
 <style lang="scss">
 /**
  *
- * @element Home
+ * @element Header
  *
 */
 
-$component: ".Home";
+$component: ".header";
 
 // @block
 // -------------
 
-// @--element
+#{$component} {
+  display: block;
+}
+
+// @__element
 // -------------
 
 // @--modifier
 // --------------
-
-body {
-  margin: 0;
-}
 </style>
