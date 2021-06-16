@@ -22,22 +22,45 @@ export default {
       return this.popupObj.value.priceKey;
     },
     name() {
-      return this.item.ItemName;
+      const n = this.item.ItemName;
+      if (n) return <h2>{n}</h2>;
+      return "";
     },
     img() {
-      return this.item.PhotoName + "?w=400&h=400";
+      const p = this.item.PhotoName;
+      if (p) return <img src={p + "?w=400&h=400"} />;
+      return "";
     },
     price() {
-      return `$${parseInt(this.item[this.pricekey]).toFixed(2)}`;
+      const p = this.item[this.pricekey];
+      if (p) return <p>{"$" + parseInt(p).toFixed(2)}`</p>;
+      return "";
     },
     id() {
-      return this.item.ItemID;
+      const i = this.item.ItemID;
+      if (i) return <p>{i}</p>;
+      return "";
     },
     description() {
-      return this.item.Description;
+      const d = this.item.Description;
+      if (d) return <p>{d}</p>;
+      return "";
     },
     dimensions() {
-      return this.item.Dimensions;
+      const d = this.item.Dimensions;
+      if (d) return <p>{d}</p>;
+      return "";
+    },
+    content() {
+      return (
+        <aside class="popup__content">
+          {this.name}
+          {this.id}
+          {this.price}
+          {this.description}
+          {this.dimensions}
+        </aside>
+      );
     },
   },
   methods: {
@@ -53,16 +76,8 @@ export default {
             <span onClick={this.close} class="popup__close">
               X
             </span>
-            <div class="popup__img">
-              <img src={this.img} />
-            </div>
-            <aside class="popup__content">
-              <h2>{this.name}</h2>
-              <p>{this.id}</p>
-              <p>{this.price}</p>
-              <p>{this.description}</p>
-              <p>{this.dimensions}</p>
-            </aside>
+            <div class="popup__img">{this.img}</div>
+            {this.content}
           </div>
         </section>
       </div>

@@ -13,30 +13,40 @@ export default {
   inject: ["footerObj"],
   computed: {
     logo() {
-      return this.footerObj.value.logo;
+      const i = this.footerObj.value.logo;
+      if (i) return <img src={i} />;
+      return "";
     },
     name() {
-      return this.footerObj.value.name;
+      const n = this.footerObj.value.name;
+      if (n) return <p>{n}</p>;
+      return "";
     },
     email() {
-      return this.footerObj.value.email;
+      const e = this.footerObj.value.email;
+      if (e) return <p>{e}</p>;
+      return "";
     },
     phone() {
-      return this.footerObj.value.phone;
+      const p = this.footerObj.value.phone;
+      if (p) return <p>{p}</p>;
+      return "";
     },
     location() {
-      return this.footerObj.value.location;
+      const l = this.footerObj.value.location;
+      if (l) return <p>{l}</p>;
+      return "";
     },
   },
   render() {
     return (
       <footer class="footer">
         <div class="footer__wrapper">
-          <img src={this.logo} />
-          <p>{this.name}</p>
-          <p>{this.email}</p>
-          <p>{this.phone}</p>
-          <p>{this.location}</p>
+          {this.logo}
+          {this.name}
+          {this.email}
+          {this.phone}
+          {this.location}
         </div>
       </footer>
     );

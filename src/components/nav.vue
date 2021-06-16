@@ -13,15 +13,13 @@ export default {
   inject: ["navObj"],
   computed: {
     img() {
-      return this.navObj.value.logoImg;
+      const i = this.navObj.value.logoImg;
+      if (i) return <img src={i} />;
+      return "";
     },
   },
   render() {
-    return (
-      <nav class="nav">
-        <img src={this.img} />
-      </nav>
-    );
+    return <nav class="nav">{this.img}</nav>;
   },
 };
 </script>

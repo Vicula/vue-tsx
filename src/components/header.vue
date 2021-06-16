@@ -12,17 +12,21 @@ export default {
   inject: ["headerObj"],
   computed: {
     title() {
-      return this.headerObj.value.name;
+      const t = this.headerObj.value.name;
+      if (t) return <h1 class="header__title">{t}</h1>;
+      return "";
     },
     msg() {
-      return this.headerObj.value.message;
+      const m = this.headerObj.value.message;
+      if (m) return <div class="header__message" v-html={m} />;
+      return "";
     },
   },
   render() {
     return (
       <header class="header">
-        <h1 class="header__title">{this.title}</h1>
-        <div class="header__message" v-html={this.msg}></div>
+        {this.title}
+        {this.msg}
       </header>
     );
   },

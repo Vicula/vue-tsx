@@ -32,10 +32,30 @@ export default {
     pricing(): boolean {
       return this.prodObj.value.pricing;
     },
+    img() {
+      const p = this.item.PhotoName;
+      if (p) return <img class="prod__img" src={p + "?w=200&h=200"} />;
+      return "";
+    },
+    name() {
+      const n = this.item.ItemName;
+      if (n) return <h3>{n}</h3>;
+      return "";
+    },
     logo() {
       if (this.branding)
         return <img class="prod__logo" src={this.prodObj.value.logo} />;
       return "";
+    },
+    content() {
+      return (
+        <div class="prod__wrap">
+          {this.img}
+          {this.name}
+          {this.money}
+          {this.logo}
+        </div>
+      );
     },
   },
   render() {
@@ -46,10 +66,7 @@ export default {
           this.$emit("popup", this.item);
         }}
       >
-        <img class="prod__img" src={this.item.PhotoName + "?w=200&h=200"} />
-        <h3>{this.item.ItemName}</h3>
-        {this.money}
-        {this.logo}
+        {this.content}
       </article>
     );
   },
